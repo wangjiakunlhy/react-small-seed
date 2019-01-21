@@ -12,7 +12,7 @@ module.exports = {
         contentBase: './public',
         historyApiFallback: true,
         host: 'localhost',
-        port: 8089,
+        port: 8088,
         inline: true // 实时刷新
     },
     module: {
