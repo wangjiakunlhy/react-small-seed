@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
+const logo = require('../images/logo.jpeg');
 
 
 class HomePage extends Component{
@@ -17,6 +18,7 @@ class HomePage extends Component{
             <div>
                 Hello,React!
                 <button onClick={this.goToDetail}>go</button>
+                <img src={logo}/>
             </div>
         )
     }
