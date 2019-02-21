@@ -1,12 +1,23 @@
-var htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
+const devMode = process.env.NODE_ENV !== 'production'
+
 module.exports = {
     context: path.resolve('./src'),
     devtool: 'eval-source-map',
     entry: __dirname + '/src/index.js',
     output: {
         path: __dirname + "/public",
-        filename: "js/bundle.js"
+        filename: "js/[name].[hash].bundle.js",
+    },
+    optimization: {
+        splitChunks: {
+          chunks: 'all'
+        }
+    },
+    performance: {
+        hints: false
     },
     devServer: {
         port:8088,
@@ -26,11 +37,18 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                use:['style-loader','css-loader','postcss-loader','sass-loader']
+                use:[
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader','postcss-loader','less-loader']
             },
             {
-                test:/\.scss$/,
-                use:['style-loader','css-loader','postcss-loader','sass-loader']
+                test:/\.less$/,
+                loaders: [
+                    {loader:'style-loader'},
+                    {loader:'css-loader'},
+                    {loader:'postcss-loader'},
+                    {loader:'less-loader',options: {javascriptEnabled:true}},
+                ],
             },
             {
                 test:/\.(jpeg|png|gif|jpg)$/,
@@ -41,6 +59,10 @@ module.exports = {
     plugins:[
         new htmlWebpackPlugin({
             template:'index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
         })
     ]
 }
