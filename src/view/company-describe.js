@@ -6,7 +6,6 @@ const RadioGroup = Radio.Group;
 
 import '../style/index.less'
 import PropTypes from "prop-types";
-import HomePage from "./home-page";
 
 
 class CompanyDetail extends Component{
