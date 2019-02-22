@@ -1,8 +1,6 @@
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const ENV = process.env;
-console.log(process.env.npm_lifecycle_event);
 module.exports = {
     context: path.resolve('./src'),
     devtool: 'eval-source-map',
