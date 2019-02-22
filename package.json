@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --open",
-    "dev": "webpack-dev-server --open --config webpack.dev.config.js --env dev"
+    "uat": "webpack-dev-server --open",
+    "prod": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --open"
   },
   "author": "",
   "license": "ISC",

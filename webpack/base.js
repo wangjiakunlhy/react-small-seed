@@ -1,19 +1,14 @@
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-module.exports = {
+const absUrl = __dirname.replace('webpack','')
+
+const BaseWebpack = {
     context: path.resolve('./src'),
     devtool: 'eval-source-map',
-    entry: __dirname + '/src/index.js',
+    entry: absUrl + 'src/index.js',
     output: {
-        path: __dirname + "/public",
-        filename: "js/bundle-dev.js"
-    },
-    devServer: {
-        contentBase: './public',
-        historyApiFallback: true,
-        host: 'localhost',
-        port: 8088,
-        inline: true // 实时刷新
+        path: absUrl + 'public',
+        filename: "js/[name].[hash].bundle.js"
     },
     module: {
         rules: [
@@ -45,7 +40,9 @@ module.exports = {
     },
     plugins:[
         new htmlWebpackPlugin({
-            template:'index.html'
+            template:absUrl+'src/index.html',
         })
     ]
 }
+
+module.exports = BaseWebpack;
