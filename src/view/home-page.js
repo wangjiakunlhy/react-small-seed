@@ -9,7 +9,6 @@ class HomePage extends Component{
 
     componentDidMount(){
         console.log(this.context);
-        console.log(process.env.NODE_ENV);
         console.log(config);
     }
 
